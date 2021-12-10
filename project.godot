@@ -21,11 +21,20 @@ _global_script_class_icons={
 [application]
 
 config/name="HFGodotTools"
+run/main_scene="res://addons/HFGodotTools/Components/DamageIndicator/ExampleScene.tscn"
 config/icon="res://icon.png"
 
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/HFGodotTools/plugin.cfg" )
+
+[input]
+
+test={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":49,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [physics]
 

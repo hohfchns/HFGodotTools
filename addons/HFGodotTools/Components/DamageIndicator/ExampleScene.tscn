@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/HFGodotTools/Components/DamageIndicator/ExampleSprite.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[node name="DamageIndicatorExample" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 259.0
+margin_top = 63.0
+margin_right = 299.0
+margin_bottom = 77.0
+text = "press 1 to spawn a damage indicator!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 381, 182 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
