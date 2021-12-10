@@ -3,9 +3,9 @@ class_name ServiceLocator
 
 
 # Add to this dict as "ServiceName" : rf_service
-var __mrf_services: Dictionary = {}
+var __rfd_services: Dictionary = {}
 
-export(String, DIR) var __m_null_service_dir
+export(String, DIR) var __null_sercvice_dir
 
 
 signal service_changed(service_name)
@@ -13,12 +13,12 @@ signal new_service(service_name)
 
 
 func get_service(identity: Node, service_name: String) -> Node:
-	if service_name in __mrf_services:
-		return __mrf_services[service_name]
+	if service_name in __rfd_services:
+		return __rfd_services[service_name]
 	# The above code returns from the function, so no need for extra indentation
 	
 	var n_service_name: String = "Null%s" % service_name
-	var null_service: Resource = load("%s/%s.gd" % [__m_null_service_dir, n_service_name])
+	var null_service: Resource = load("%s/%s.gd" % [__null_sercvice_dir, n_service_name])
 	if null_service:
 		printerr("Warning! %s tried to retrieve a non-existant service by the name of %s, returning null service!" \
 			 % [identity.name, service_name])
@@ -31,7 +31,7 @@ func get_service(identity: Node, service_name: String) -> Node:
 
 
 func provide_service(service_name: String, rf_service: Node) -> void:
-	__mrf_services[service_name] = rf_service
+	__rfd_services[service_name] = rf_service
 	emit_signal("new_service", service_name)
 
 func provide_service_dict(dict: Dictionary) -> void:
@@ -40,15 +40,15 @@ func provide_service_dict(dict: Dictionary) -> void:
 
 
 func remove_service(service_name: String) -> void:
-	__mrf_services.erase(service_name)
+	__rfd_services.erase(service_name)
 	emit_signal("service_changed", service_name)
 
 
 func overwrite_service(service_name: String, rf_new_service: Node) -> void:
-	__mrf_services[service_name] = rf_new_service
+	__rfd_services[service_name] = rf_new_service
 	emit_signal("service_changed", service_name)
 
 
 func get_available_services() -> Array:
-	return __mrf_services.keys()
+	return __rfd_services.keys()
 
