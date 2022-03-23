@@ -1,5 +1,18 @@
 extends Control
 
+# --------------------------------------------------------------------------------------
+# This is pretty old code, so no guarentees for updates, beyond this documentation one,
+# despite there being obvious improvements to make
+# --------------------------------------------------------------------------------------
+#
+# ---------------------- USAGE -------------------------------------------------
+# First of all, do not use this outside of code! It is meant to be instantiated
+# at the time it's needed.
+# 
+# The example scene should have all you need to know to use this, it's in the
+# same directory as this.
+# ------------------------------------------------------------------------------
+
 const SENSIBLE_BASE := Vector2(75, -250)
 
 export var gravity_ : float

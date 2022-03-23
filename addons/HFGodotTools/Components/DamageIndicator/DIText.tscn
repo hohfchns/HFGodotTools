@@ -13,6 +13,3 @@ margin_right = 35.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 1 )
 text = "21"
-__meta__ = {
-"_edit_use_anchors_": false
-}

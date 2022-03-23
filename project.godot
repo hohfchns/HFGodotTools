@@ -10,12 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "ServiceLocator",
+"class": "HFServiceLocator",
 "language": "GDScript",
 "path": "res://addons/HFGodotTools/Components/Service/ServiceLocator.gd"
 } ]
 _global_script_class_icons={
-"ServiceLocator": ""
+"HFServiceLocator": ""
 }
 
 [application]
