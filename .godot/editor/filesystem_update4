@@ -1,0 +1,5 @@
+res://default_env.tres
+res://addons/HFGodotTools/Components/DamageIndicator/ExampleScene.tscn
+res://addons/HFGodotTools/Components/DamageIndicator/DamageIndicator.gd
+res://addons/HFGodotTools/Components/DamageIndicator/ExampleSprite.gd
+res://addons/HFGodotTools/Components/DamageIndicator/DamageIndicator.tscn

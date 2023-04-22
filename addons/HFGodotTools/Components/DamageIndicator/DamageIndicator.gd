@@ -1,92 +1,82 @@
 extends Control
-
-# --------------------------------------------------------------------------------------
-# This is pretty old code, so no guarentees for updates, beyond this documentation one,
-# despite there being obvious improvements to make
-# --------------------------------------------------------------------------------------
-#
+class_name HFDamageIndicator
 # ---------------------- USAGE -------------------------------------------------
-# First of all, do not use this outside of code! It is meant to be instantiated
-# at the time it's needed.
+# This class is meant to be instantiated from code at the time it's needed.
 # 
 # The example scene should have all you need to know to use this, it's in the
-# same directory as this.
+# same directory as this script.
 # ------------------------------------------------------------------------------
 
-const SENSIBLE_BASE := Vector2(75, -250)
+@export var gravity := 650.0
+@export var friction := 75.0
 
-export var gravity_ : float
-export var friction_ : float
+@export var duration := 0.7
+@export var fade_out_duration := 0.1
+@export var paused := false
+@export var random_velocity := Vector2.ZERO
 
-export var duration_ : float
-export var fade_out_duration_ : float
-
-onready var __rf_text = $Text
-onready var __rf_dur_timer = $DurationTimer
-onready var __rf_fade_out_tween = $FadeOutTween
+@onready var _text = $Text
+@onready var _duration_timer = $DurationTimer
 
 var initialized := false
 
-var velocity_ := Vector2.ZERO
+var _velocity := Vector2(75, -250)
 
-var __start := false
-var __end := false
-var __done := false
 
-var __text_scale = 1.0
+var _start := false
+var _end := false
+var _done := false
+
+var _text_scale = 1.0
 
 
 func init(start_velocity := Vector2(75, -250), gravity := 650.0, friction := 75.0, duration := 0.7, fade_out_duration := 0.1):
-	self.velocity_ = start_velocity
-	self.gravity_ = gravity
-	self.friction_ = friction
-	self.duration_ = duration
-	self.fade_out_duration_ = fade_out_duration
-	
-	initialized = true
+	self._velocity = start_velocity
+	self.gravity = gravity
+	self.friction = friction
+	self.duration = duration
+	self.fade_out_duration = fade_out_duration
 
 
 func _ready():
-	__rf_text.rect_position = Vector2.ZERO
-	__rf_dur_timer.connect("timeout", self, "_on_duration_timeout")
-	
-	start()
-
+	_text.position = Vector2.ZERO
+	_duration_timer.connect("timeout", Callable(self, "_on_duration_timeout"))
+	_duration_timer.start(duration)
+	randomize_velocity(random_velocity)
 
 func _process(delta):
-	if not initialized:
-		printerr("Damage indicator instantiated but not initialized! Use damage_indicator.init()")
+	if paused:
+		_duration_timer.paused = true
 		return
+	else:
+		_duration_timer.paused = false
 	
-	if not __start:
-		return
+	_text.scale = Vector2(_text_scale, _text_scale)
 	
-	__rf_text.rect_scale = Vector2(__text_scale, __text_scale)
+	var side = 1 if _velocity.x > 0 else -1
 	
-	var side : int = 1 if velocity_.x > 0 else -1
+	_velocity.y += gravity * delta
+	_velocity.x -= friction * delta * side
 	
-	velocity_.y += gravity_ * delta
-	velocity_.x -= friction_ * delta * side
+	if _end:
+		var fade_out_tween: Tween = get_tree().create_tween()
+		fade_out_tween.tween_property(_text, "modulate:a", 0.0, fade_out_duration)
+		
+		if not fade_out_tween.is_connected("finished", self.queue_free):
+			fade_out_tween.connect("finished", self.queue_free)
 	
-	if __end:
-		__rf_fade_out_tween.interpolate_property(__rf_text, "modulate:a", __rf_text.modulate.a, 0.0, fade_out_duration_)
-		__rf_fade_out_tween.start()
-		if not __rf_fade_out_tween.is_connected("tween_completed", self, "_on_fade_out_completed"):
-			__rf_fade_out_tween.connect("tween_completed", self, "_on_fade_out_completed")
-	
-	__rf_text.rect_global_position += velocity_ * delta
+	_text.global_position += _velocity * delta
 
 
 func start():
-	__rf_dur_timer.start(duration_)
-	__start = true
+	_duration_timer.start(duration)
 
 
-func get_random_velocity(base : Vector2, v2_range : Vector2):
+func get_random_velocity(base: Vector2, variance: Vector2):
 	var new_velocity : Vector2 = base
 	
-	new_velocity.x += rand_range(-v2_range.x, v2_range.x)
-	new_velocity.y += rand_range(-v2_range.y, v2_range.y)
+	new_velocity.x += randf_range(-variance.x, variance.x)
+	new_velocity.y += randf_range(-variance.y, variance.y)
 	
 	new_velocity.x *= get_random_dir()
 	
@@ -98,14 +88,13 @@ func get_random_dir():
 	
 	return numbers[0]
 
+func randomize_velocity(variance: Vector2=Vector2(20, 15)):
+	self._velocity = get_random_velocity(_velocity, variance)
 
 func set_text_scale(value : float):
-	__text_scale = value
+	_text_scale = value
 
 
 func _on_duration_timeout():
-	__end = true
+	_end = true
 
-
-func _on_fade_out_completed(obj, key):
-	self.queue_free()
