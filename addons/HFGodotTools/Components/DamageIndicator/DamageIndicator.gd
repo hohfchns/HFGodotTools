@@ -1,3 +1,4 @@
+@tool
 extends Control
 class_name HFDamageIndicator
 # ---------------------- USAGE -------------------------------------------------
@@ -36,7 +37,6 @@ func init(start_velocity := Vector2(75, -250), gravity := 650.0, friction := 75.
 	self.friction = friction
 	self.duration = duration
 	self.fade_out_duration = fade_out_duration
-
 
 func _ready():
 	_text.position = Vector2.ZERO

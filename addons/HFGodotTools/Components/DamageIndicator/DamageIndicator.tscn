@@ -1,15 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://c53123h8gsd1y"]
 
-[ext_resource type="Script" path="res://addons/HFGodotTools/Components/DamageIndicator/DamageIndicator.gd" id="1"]
-[ext_resource type="PackedScene" path="res://addons/HFGodotTools/Components/DamageIndicator/DIText.tscn" id="2"]
+[ext_resource type="Script" path="res://addons/HFGodotTools/Components/DamageIndicator/DamageIndicator.gd" id="1_l7irs"]
+[ext_resource type="PackedScene" path="res://addons/HFGodotTools/Components/DamageIndicator/DIText.tscn" id="2_35ext"]
 
 [node name="DamageIndicator" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1")
+script = ExtResource("1_l7irs")
 
-[node name="Text" parent="." instance=ExtResource("2")]
+[node name="Text" parent="." instance=ExtResource("2_35ext")]
 layout_mode = 0
+offset_bottom = 23.0
 
 [node name="DurationTimer" type="Timer" parent="."]
+wait_time = 0.7
 one_shot = true

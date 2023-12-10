@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://f80rjbvr0q3y"]
+
+[ext_resource type="Script" path="res://addons/HFGodotTools/Components/DamageIndicator/DamageIndicatorSpawner.gd" id="1_15ar7"]
+
+[node name="DamageIndicatorSpawner" type="Node"]
+script = ExtResource("1_15ar7")
