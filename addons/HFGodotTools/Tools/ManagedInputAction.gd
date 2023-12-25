@@ -8,8 +8,12 @@ var _inputs: Array[InputEvent]: set = set_inputs, get = get_inputs
 
 var _action_id: String
 
+static var _randomized: bool = false
+
 func _init():
-	randomize()
+	if not _randomized:
+		randomize()
+		_randomized = true
 	_generate_random_id()
 
 func _generate_random_id():
