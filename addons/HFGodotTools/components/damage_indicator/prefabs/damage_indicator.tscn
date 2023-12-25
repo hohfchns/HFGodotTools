@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c53123h8gsd1y"]
 
-[ext_resource type="Script" path="res://addons/HFGodotTools/Components/DamageIndicator/DamageIndicator.gd" id="1_l7irs"]
-[ext_resource type="PackedScene" path="res://addons/HFGodotTools/Components/DamageIndicator/DIText.tscn" id="2_35ext"]
+[ext_resource type="Script" path="res://addons/HFGodotTools/components/damage_indicator/scripts/damage_indicator.gd" id="1_l7irs"]
+[ext_resource type="PackedScene" path="res://addons/HFGodotTools/components/damage_indicator/prefabs/di_text.tscn" id="2_35ext"]
 
 [node name="DamageIndicator" type="Control"]
 layout_mode = 3

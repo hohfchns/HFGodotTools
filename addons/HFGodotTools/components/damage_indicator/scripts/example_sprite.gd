@@ -1,6 +1,6 @@
 extends Sprite2D
 
-var _res_damage_indicator = preload("res://addons/HFGodotTools/Components/DamageIndicator/DamageIndicator.tscn")
+var _res_damage_indicator = preload("res://addons/HFGodotTools/components/damage_indicator/prefabs/damage_indicator.tscn")
 @export
 var _input_action: ManagedInputAction
 

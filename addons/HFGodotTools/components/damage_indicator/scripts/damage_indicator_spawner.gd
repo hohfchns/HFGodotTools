@@ -13,7 +13,7 @@ var randomize := true
 @export
 var _editor_spawn: bool = false
 
-var _res_damage_indicator: PackedScene = preload("res://addons/HFGodotTools/Components/DamageIndicator/DamageIndicator.tscn")
+var _res_damage_indicator: PackedScene = preload("res://addons/HFGodotTools/components/damage_indicator/prefabs/damage_indicator.tscn")
 
 func spawn() -> void:
 	var indicator: HFDamageIndicator = _res_damage_indicator.instantiate()
