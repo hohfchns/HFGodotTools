@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2sscwrukpd7x"]
+
+[ext_resource type="Script" path="res://scripts/helpers/theme_manager.gd" id="1_bynbr"]
+
+[node name="ThemeManager" type="Node"]
+script = ExtResource("1_bynbr")
