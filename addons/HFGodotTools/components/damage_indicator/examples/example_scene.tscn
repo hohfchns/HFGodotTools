@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://07xm2cbe8rnw"]
+[gd_scene load_steps=11 format=3 uid="uid://07xm2cbe8rnw"]
 
 [ext_resource type="Texture2D" uid="uid://b6hsugmqgjjg5" path="res://icon.png" id="1_kv8mw"]
 [ext_resource type="Script" path="res://addons/HFGodotTools/components/damage_indicator/scripts/example_sprite.gd" id="2_hmqun"]
@@ -14,6 +14,26 @@ unicode = 49
 script = ExtResource("3_d1jpv")
 _inputs = Array[InputEvent]([SubResource("InputEventKey_5tg0w")])
 
+[sub_resource type="InputEventKey" id="InputEventKey_27uqd"]
+device = -1
+ctrl_pressed = true
+keycode = 90
+unicode = 122
+
+[sub_resource type="Resource" id="Resource_wo4pe"]
+script = ExtResource("3_d1jpv")
+_inputs = Array[InputEvent]([SubResource("InputEventKey_27uqd")])
+
+[sub_resource type="InputEventKey" id="InputEventKey_abb8r"]
+device = -1
+ctrl_pressed = true
+keycode = 82
+unicode = 114
+
+[sub_resource type="Resource" id="Resource_ftoq1"]
+script = ExtResource("3_d1jpv")
+_inputs = Array[InputEvent]([SubResource("InputEventKey_abb8r")])
+
 [node name="DamageIndicatorExample" type="Node2D"]
 
 [node name="Label" type="Label" parent="."]
@@ -23,11 +43,14 @@ offset_right = 299.0
 offset_bottom = 77.0
 text = "press 1 to spawn a damage indicator!"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("_showcase_label")]
 position = Vector2(381, 182)
 texture = ExtResource("1_kv8mw")
 script = ExtResource("2_hmqun")
+_showcase_label = NodePath("../Label")
 _input_action = SubResource("Resource_ru0m2")
+_undo_action = SubResource("Resource_wo4pe")
+_redo_action = SubResource("Resource_ftoq1")
 
 [node name="DamageIndicatorSpawner" parent="Sprite2D" instance=ExtResource("4_a0mts")]
 __parent = NodePath("..")
