@@ -1,5 +1,5 @@
 extends Object
-class_name Stack
+class_name OStack
 
 var _arr: Array[Variant] = []
 
@@ -21,8 +21,8 @@ func top() -> Variant:
 func size() -> int:
 	return _arr.size()
 
-func map(call: Callable) -> Stack:
-	var new: Stack
+func map(call: Callable) -> OStack:
+	var new: OStack
 	for element in _arr:
 		new.add(call(element))
 	

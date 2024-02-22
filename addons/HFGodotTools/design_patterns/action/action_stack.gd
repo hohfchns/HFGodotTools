@@ -1,8 +1,8 @@
 extends Object
 class_name OActionStack
 
-var do_stack: Stack = Stack.new()
-var undo_stack: Stack = Stack.new()
+var do_stack: OStack = OStack.new()
+var undo_stack: OStack = OStack.new()
 
 func do_action(action: AAction) -> void:
 	if not action.is_valid:
